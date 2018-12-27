@@ -1,27 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import ToDoItem from "../todo-item";
 import AddItemInput from "../add-item-input";
+import { useItems } from "./hooks";
 
 const ToDoList = () => {
-  const [items, setItems] = useState([
-    { value: "item one", key: 1 },
-    { value: "item two", key: 2 }
-  ]);
-
-  const removeItem = ({ keyToRemove }) => {
-    const newItems = items.filter(({ key }) => key !== keyToRemove);
-    console.log(keyToRemove, newItems);
-    setItems(newItems);
-  };
-
-  const addItem = value => {
-    const newItem = {
-      value,
-      key: items.length + 1
-    };
-    const newItems = [...items, newItem];
-    setItems(newItems);
-  };
+  const { items, addItem, removeItem } = useItems();
 
   return (
     <div>

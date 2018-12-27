@@ -1,12 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
+import { useInputValue } from "../../libs/hooks";
 
 const AddItemInput = ({ addItem }) => {
-  const [value, setValue] = useState("");
-
-  const onChange = event => {
-    setValue(event.target.value);
-  };
+  const { value, onChange } = useInputValue();
 
   return (
     <div>
