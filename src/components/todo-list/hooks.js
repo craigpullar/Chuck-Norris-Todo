@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { getHighestKey } from "./utilities";
 
 const defaultItems = [
   { value: "item one", key: 1 },
@@ -16,11 +17,7 @@ export const useItems = (initialItems = defaultItems) => {
   const addItem = value => {
     const newItem = {
       value,
-      key:
-        items.reduce(
-          (accumulator, { key }) => (key > accumulator ? key : accumulator),
-          0
-        ) + 1
+      key: items.reduce(getHighestKey, 0) + 1
     };
     const newItems = [...items, newItem];
     setItems(newItems);
