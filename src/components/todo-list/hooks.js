@@ -16,7 +16,11 @@ export const useItems = (initialItems = defaultItems) => {
   const addItem = value => {
     const newItem = {
       value,
-      key: items.length + 1
+      key:
+        items.reduce(
+          (accumulator, { key }) => (key > accumulator ? key : accumulator),
+          0
+        ) + 1
     };
     const newItems = [...items, newItem];
     setItems(newItems);
