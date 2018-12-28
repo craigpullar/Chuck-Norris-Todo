@@ -17,6 +17,7 @@ export const useItems = (initialItems = []) => {
   const removeItem = ({ keyToRemove }) => {
     const newItems = items.filter(({ key }) => key !== keyToRemove);
     setItems(newItems);
+    Database.TodoItems.remove({ id: keyToRemove });
   };
 
   const addItem = async value => {
