@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import Database from "../../libs/database";
 
-export const useItems = (initialItems = []) => {
-  const [items, setItems] = useState([]);
-
+const useDatabaseItems = ({ setItems }) => {
   const loadItems = async () => {
     const loadedItems = await Database.TodoItems.getAll();
     setItems(loadedItems);
@@ -13,6 +11,11 @@ export const useItems = (initialItems = []) => {
     loadItems();
     return () => {};
   }, []);
+};
+
+export const useItems = (initialItems = []) => {
+  const [items, setItems] = useState(initialItems);
+  !initialItems.length && useDatabaseItems({ setItems });
 
   const removeItem = ({ keyToRemove }) => {
     const newItems = items.filter(({ key }) => key !== keyToRemove);
@@ -21,6 +24,7 @@ export const useItems = (initialItems = []) => {
   };
 
   const addItem = async value => {
+    //TODO: Maybe a sync key function so we don't block the render whilst we access the db
     const { id } = await Database.TodoItems.add({ value });
     const newItem = {
       value,
