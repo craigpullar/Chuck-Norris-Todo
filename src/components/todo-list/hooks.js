@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getHighestKey } from "./utilities";
+import Database from "../../libs/database";
 
 const defaultItems = [
   { value: "item one", key: 1 },
@@ -14,10 +14,11 @@ export const useItems = (initialItems = defaultItems) => {
     setItems(newItems);
   };
 
-  const addItem = value => {
+  const addItem = async value => {
+    const { id } = await Database.TodoItems.add({ value });
     const newItem = {
       value,
-      key: items.reduce(getHighestKey, 0) + 1
+      key: id
     };
     const newItems = [...items, newItem];
     setItems(newItems);
