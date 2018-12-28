@@ -24,7 +24,7 @@ export const useItems = (initialItems = []) => {
   };
 
   const addItem = async value => {
-    //TODO: Maybe a sync key function so we don't block the render whilst we access the db
+    //TODO: rerender is block by api call here
     const { id } = await Database.TodoItems.add({ value });
     const newItem = {
       value,
