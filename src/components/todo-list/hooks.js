@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Database from "../../libs/database";
 
-const defaultItems = [
-  { value: "item one", key: 1 },
-  { value: "item two", key: 2 }
-];
+export const useItems = (initialItems = []) => {
+  const [items, setItems] = useState([]);
 
-export const useItems = (initialItems = defaultItems) => {
-  const [items, setItems] = useState(initialItems);
+  const loadItems = async () => {
+    const loadedItems = await Database.TodoItems.getAll();
+    setItems(loadedItems);
+  };
+
+  useEffect(() => {
+    loadItems();
+    return () => {};
+  }, []);
 
   const removeItem = ({ keyToRemove }) => {
     const newItems = items.filter(({ key }) => key !== keyToRemove);
@@ -20,7 +25,7 @@ export const useItems = (initialItems = defaultItems) => {
       value,
       key: id
     };
-    const newItems = [...items, newItem];
+    const newItems = [newItem, ...items];
     setItems(newItems);
   };
 
