@@ -24,7 +24,7 @@ export const useItems = (initialItems = []) => {
   };
 
   const addItem = async value => {
-    //TODO: rerender is block by api call here
+    //TODO: rerender is blocked by api call here
     const { id } = await Database.TodoItems.add({ value });
     const newItem = {
       value,
