@@ -1,16 +1,8 @@
-import React, { useState, useEffect } from "react";
-const getQuoteFromApi = async ({ setQuote }) => {
-  const response = await fetch("https://api.chucknorris.io/jokes/random");
-  const quoteData = await response.json();
-  setQuote(quoteData.value);
-};
+import React from "react";
+import { useQuote } from "./hooks";
 
-const ChuckNorrisQuote = ({ query }) => {
-  const [quote, setQuote] = useState("");
-
-  useEffect(() => {
-    getQuoteFromApi({ setQuote });
-  }, []);
+const ChuckNorrisQuote = () => {
+  const { quote } = useQuote();
 
   return <i>{quote}</i>;
 };

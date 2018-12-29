@@ -11,7 +11,7 @@ const ToDoList = () => {
     <div>
       <AddItemInput addItem={addItem} />
       <h2>Todo List</h2>
-      {items.map(({ value, key }) => {
+      {items.map(({ value, key }, index) => {
         return (
           <div>
             <ToDoItem
@@ -20,7 +20,7 @@ const ToDoList = () => {
               itemKey={key}
               key={key}
             />
-            <ChuckNorrisQuote />
+            <ChuckNorrisQuote key={`${key} ${index}`} />
           </div>
         );
       })}
