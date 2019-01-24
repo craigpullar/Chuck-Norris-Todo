@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ToDoItem from "../todo-item";
 import AddItemInput from "../add-item-input";
 import ChuckNorrisQuote from "../chuck-norris-quote";
@@ -11,6 +11,7 @@ const ToDoList = () => {
     <div>
       <AddItemInput addItem={addItem} />
       <h2>Todo List</h2>
+
       {items.map(({ value, key }, index) => {
         return (
           <div>
@@ -20,7 +21,9 @@ const ToDoList = () => {
               itemKey={key}
               key={key}
             />
-            <ChuckNorrisQuote key={`${key} ${index}`} />
+            <Suspense fallback="Loading your chuck norris quote...">
+              <ChuckNorrisQuote key={key} id={key} />
+            </Suspense>
           </div>
         );
       })}
