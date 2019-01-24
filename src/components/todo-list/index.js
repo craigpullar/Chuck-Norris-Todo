@@ -11,7 +11,7 @@ const ToDoList = () => {
     <Grid>
       <AddItemInput addItem={addItem} />
       <Grid container spacing={24} justify="center" direction="column">
-        {items.map(({ value, key }, index) => {
+        {items.map(({ value, key }) => {
           return (
             <Grid item>
               <ToDoItem

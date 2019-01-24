@@ -33,7 +33,8 @@ const ToDoItem = ({ value, removeItem, itemKey }) => (
 
 ToDoItem.propTypes = {
   value: PropTypes.string.isRequired,
-  removeItem: PropTypes.func.isRequired
+  removeItem: PropTypes.func.isRequired,
+  itemKey: PropTypes.string.isRequired
 };
 
 export default ToDoItem;
