@@ -1,33 +1,30 @@
-import React, { Suspense } from "react";
+import React from "react";
+import Grid from "@material-ui/core/Grid";
 import ToDoItem from "../todo-item";
 import AddItemInput from "../add-item-input";
-import ChuckNorrisQuote from "../chuck-norris-quote";
 import { useItems } from "./hooks";
 
 const ToDoList = () => {
   const { items, addItem, removeItem } = useItems();
 
   return (
-    <div>
+    <Grid>
       <AddItemInput addItem={addItem} />
-      <h2>Todo List</h2>
-
-      {items.map(({ value, key }, index) => {
-        return (
-          <div>
-            <ToDoItem
-              value={value}
-              removeItem={removeItem}
-              itemKey={key}
-              key={key}
-            />
-            <Suspense fallback="Loading your chuck norris quote...">
-              <ChuckNorrisQuote key={key} id={key} />
-            </Suspense>
-          </div>
-        );
-      })}
-    </div>
+      <Grid container spacing={24} justify="center" direction="column">
+        {items.map(({ value, key }, index) => {
+          return (
+            <Grid item>
+              <ToDoItem
+                value={value}
+                removeItem={removeItem}
+                itemKey={key}
+                key={key}
+              />
+            </Grid>
+          );
+        })}
+      </Grid>
+    </Grid>
   );
 };
 
