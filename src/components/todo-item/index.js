@@ -4,13 +4,15 @@ import PropTypes from "prop-types";
 const ToDoItem = ({ value, removeItem, itemKey }) => (
   <div>
     <p>{value}</p>
-    <button
-      onClick={() => {
-        removeItem({ keyToRemove: itemKey });
-      }}
-    >
-      delete
-    </button>
+    {itemKey && (
+      <button
+        onClick={() => {
+          removeItem({ keyToRemove: itemKey });
+        }}
+      >
+        delete
+      </button>
+    )}
   </div>
 );
 

@@ -17,6 +17,11 @@ export const useItems = (initialItems = []) => {
   const [items, setItems] = useState(initialItems);
   !initialItems.length && useDatabaseItems({ setItems });
 
+  const addNewItemToItemList = ({ newItem }) => {
+    const newItems = [newItem, ...items];
+    setItems(newItems);
+  };
+
   const removeItem = ({ keyToRemove }) => {
     const newItems = items.filter(({ key }) => key !== keyToRemove);
     setItems(newItems);
@@ -24,14 +29,16 @@ export const useItems = (initialItems = []) => {
   };
 
   const addItem = async value => {
-    //TODO: rerender is blocked by api call here
-    const { id } = await Database.TodoItems.add({ value });
     const newItem = {
+      value
+    };
+    addNewItemToItemList({ newItem });
+    const { id } = await Database.TodoItems.add({ value });
+    const newItemWithKey = {
       value,
       key: id
     };
-    const newItems = [newItem, ...items];
-    setItems(newItems);
+    addNewItemToItemList({ newItem: newItemWithKey });
   };
 
   return {
