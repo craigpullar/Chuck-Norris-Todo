@@ -8,7 +8,7 @@ import Grid from "@material-ui/core/Grid";
 import { useInputValue } from "../../libs/hooks";
 
 const AddItemInput = ({ addItem }) => {
-  const { value, onChange } = useInputValue();
+  const { value, onChange, clearValue } = useInputValue();
 
   return (
     <Grid container style={{ padding: 40 }} direction="column" justify="center">
@@ -20,6 +20,7 @@ const AddItemInput = ({ addItem }) => {
           color="primary"
           onClick={() => {
             addItem(value);
+            clearValue();
           }}
           style={{ marginLeft: 10 }}
         >
