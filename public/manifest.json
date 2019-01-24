@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Chuck Norris Todo",
+  "name": "A simple todo app but you get a chuck norris quote with each one!",
   "icons": [
     {
       "src": "favicon.ico",
