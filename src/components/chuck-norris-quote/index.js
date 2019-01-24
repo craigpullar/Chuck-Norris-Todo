@@ -7,10 +7,8 @@ const ChuckNorrisResource = unstable_createResource(async id => {
   return response.json();
 });
 
-const ChuckNorrisQuote = ({ id }) => {
-  return (
-    <Typography align="left">{ChuckNorrisResource.read(id).value}</Typography>
-  );
-};
+const ChuckNorrisQuote = ({ id }) => (
+  <Typography align="left">{ChuckNorrisResource.read(id).value}</Typography>
+);
 
 export default ChuckNorrisQuote;

@@ -29,9 +29,7 @@ export const useItems = (initialItems = []) => {
   };
 
   const addItem = async value => {
-    const newItem = {
-      value
-    };
+    const newItem = { value };
     addNewItemToItemList({ newItem });
     const { id } = await Database.TodoItems.add({ value });
     const newItemWithKey = {

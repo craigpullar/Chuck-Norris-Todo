@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
 
 import ChuckNorrisQuote from "../chuck-norris-quote";
+import DeleteButton from "./delete-button";
 
 const ToDoItem = ({ value, removeItem, itemKey }) => (
   <Paper style={{ padding: 20 }}>
@@ -17,14 +17,11 @@ const ToDoItem = ({ value, removeItem, itemKey }) => (
       </Grid>
       <Grid item xs={2}>
         {itemKey && (
-          <Button
+          <DeleteButton
             onClick={() => {
               removeItem({ keyToRemove: itemKey });
             }}
-            color="secondary"
-          >
-            delete
-          </Button>
+          />
         )}
       </Grid>
       <Suspense fallback="Loading your chuck norris quote...">
